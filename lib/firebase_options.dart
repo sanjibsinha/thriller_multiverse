@@ -41,7 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCnWIdBQ4DbNQKtKwmaXYihs-dGvupLT10',
+    apiKey: 'xxxxxxxxxxxxxxxx',
     appId: '1:147028699252:web:7d0f175106e49ac17c8921',
     messagingSenderId: '147028699252',
     projectId: 'thriller-multiverse',
@@ -50,14 +50,14 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCWPNAzFzgi1_6IUwdfmU4xBGtajzO2ZbM',
+    apiKey: 'xxxxxxxxxxxxxxxx',
     appId: '1:147028699252:android:d5c04826820687da7c8921',
     messagingSenderId: '147028699252',
     projectId: 'thriller-multiverse',
     storageBucket: 'thriller-multiverse.firebasestorage.app',
   );
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDBLh4xpgMFfV5v1x6nlfaR0j66o7uu5yE',
+    apiKey: 'xxxxxxxxxxxxxxxx',
     appId: '1:147028699252:ios:11a51af79fe2028d7c8921',
     messagingSenderId: '147028699252',
     projectId: 'thriller-multiverse',
@@ -65,7 +65,7 @@ class DefaultFirebaseOptions {
     iosBundleId: 'com.example.thrillerMultiverse',
   );
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDBLh4xpgMFfV5v1x6nlfaR0j66o7uu5yE',
+    apiKey: 'xxxxxxxxxxxxxxxx',
     appId: '1:147028699252:ios:11a51af79fe2028d7c8921',
     messagingSenderId: '147028699252',
     projectId: 'thriller-multiverse',
@@ -74,7 +74,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCnWIdBQ4DbNQKtKwmaXYihs-dGvupLT10',
+    apiKey: 'xxxxxxxxxxxxxxxx',
     appId: '1:147028699252:web:330310fb0c9146897c8921',
     messagingSenderId: '147028699252',
     projectId: 'thriller-multiverse',
