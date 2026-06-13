@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'firebase_options.dart';
 import 'screens/library_screen.dart';
 import 'screens/support_screen.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'dart:io';
 
-void main() {
+// Handles notifications when the app is completely closed or running in the background
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  debugPrint("Background message ID: ${message.messageId}");
+}
+
+void main() async {
+  // Required for both Firebase and SQLite
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize Firebase First
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
+  // Register background handler
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  // Initialize SQLite for Desktop testing (Linux/Windows/macOS)
   if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
 
-  runApp(const ThrillerApp()); // Replace with your actual root widget
+  // Boot the system
+  runApp(const ThrillerApp()); 
 }
+
+// Ensure your existing ThrillerApp class remains here below this code.
 
 class ThrillerApp extends StatelessWidget {
   const ThrillerApp({super.key});

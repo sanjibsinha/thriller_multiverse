@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "147028699252",
+    "project_id": "thriller-multiverse",
+    "storage_bucket": "thriller-multiverse.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147028699252:android:c27551fcebc1d71c7c8921",
+        "android_client_info": {
+          "package_name": "com.example.thriller_multiverse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWPNAzFzgi1_6IUwdfmU4xBGtajzO2ZbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
