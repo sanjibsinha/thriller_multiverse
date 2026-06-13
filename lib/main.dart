@@ -15,21 +15,21 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 void main() async {
-  // Required for both Firebase and SQLite
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Initialize Firebase First
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  
-  // Register background handler
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // Initialize SQLite for Desktop testing (Linux/Windows/macOS)
   if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
+  }
+
+  // Initialize Firebase ONLY on mobile platforms
+  if (Platform.isAndroid || Platform.isIOS) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    // Register background handler
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
 
   // Boot the system
