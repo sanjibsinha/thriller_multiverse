@@ -51,12 +51,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCWPNAzFzgi1_6IUwdfmU4xBGtajzO2ZbM',
-    appId: '1:147028699252:android:c27551fcebc1d71c7c8921',
+    appId: '1:147028699252:android:d5c04826820687da7c8921',
     messagingSenderId: '147028699252',
     projectId: 'thriller-multiverse',
     storageBucket: 'thriller-multiverse.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDBLh4xpgMFfV5v1x6nlfaR0j66o7uu5yE',
     appId: '1:147028699252:ios:11a51af79fe2028d7c8921',
@@ -65,7 +64,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'thriller-multiverse.firebasestorage.app',
     iosBundleId: 'com.example.thrillerMultiverse',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDBLh4xpgMFfV5v1x6nlfaR0j66o7uu5yE',
     appId: '1:147028699252:ios:11a51af79fe2028d7c8921',
