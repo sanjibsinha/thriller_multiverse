@@ -49,26 +49,29 @@ class SupportScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           
-          // QR Code Box
+          // Updated QR Code Box with Original Image
           Container(
             width: 200,
             height: 200,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.white, // White background so the QR is easily scannable
               borderRadius: BorderRadius.circular(10.0),
               border: Border.all(color: const Color(0xFFD32F2F), width: 2),
             ),
-            child: const Center(
-              child: Icon(
-                Icons.qr_code_2,
-                size: 150,
-                color: Colors.black, // High contrast for scanning
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                'assets/images/qr_code.png', // Ensure the name exactly matches your file
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => const Center(
+                  child: Text('ইমেজ লোড হয়নি', style: TextStyle(color: Colors.black)),
+                ),
               ),
             ),
           ),
           const SizedBox(height: 20),
           const Text(
-            'UPI ID: your-upi-id@bank', // এখানে আপনার আসল UPI ID বসিয়ে নেবেন
+            '9831657474@ybl', // এখানে আপনার আসল UPI ID বসিয়ে নেবেন
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

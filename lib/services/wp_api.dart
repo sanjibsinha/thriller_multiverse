@@ -1,25 +1,43 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'db_helper.dart'; // লোকাল ডেটাবেস ইম্পোর্ট
 
 class WpApi {
-  // Your central database URL
   static const String baseUrl = 'https://sanjibdebsinha.in/wp-json/wp/v2';
+  static final dbHelper = DatabaseHelper();
 
-  // Fetch all posts (chapters)
+  // Fetch Chapters with Offline Support
   static Future<List<dynamic>> fetchChapters() async {
-    final response = await http.get(Uri.parse('$baseUrl/posts?_embed'));
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/posts?_embed'));
 
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load database. Code: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        final List<dynamic> fetchedData = json.decode(response.body);
+        // ব্যাকগ্রাউন্ডে ডেটাবেস সিঙ্ক
+        await dbHelper.cacheChapters(fetchedData);
+        return fetchedData;
+      } else {
+        throw Exception('Server error');
+      }
+    } catch (e) {
+      // নেটওয়ার্ক ফেল করলে লোকাল স্টোরেজ থেকে ডেটা সার্ভ হবে
+      final localData = await dbHelper.getCachedChapters();
+      
+      if (localData.isNotEmpty) {
+        // UI-এর সাথে মানানসই করতে ফরম্যাট রি-স্ট্রাকচার করা হলো
+        return localData.map((row) => {
+          'id': row['id'],
+          'title': {'rendered': row['title']},
+          'content': {'rendered': row['content']},
+        }).toList();
+      } else {
+        throw Exception('নো সিগন্যাল। লোকাল ডেটাবেস এম্পটি।');
+      }
     }
   }
 
-  // Fetch all categories (books)
   static Future<List<dynamic>> fetchBooks() async {
     final response = await http.get(Uri.parse('$baseUrl/categories'));
-
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {

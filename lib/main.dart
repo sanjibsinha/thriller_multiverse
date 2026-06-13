@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'screens/library_screen.dart';
 import 'screens/support_screen.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'dart:io';
 
 void main() {
-  runApp(const ThrillerApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+
+  runApp(const ThrillerApp()); // Replace with your actual root widget
 }
 
 class ThrillerApp extends StatelessWidget {
