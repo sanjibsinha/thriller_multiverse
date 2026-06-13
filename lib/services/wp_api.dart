@@ -44,4 +44,19 @@ class WpApi {
       throw Exception('Failed to load books. Code: ${response.statusCode}');
     }
   }
+
+  // Fetch chapters belonging to a specific category/book
+  static Future<List<dynamic>> fetchChaptersByCategory(int categoryId) async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/posts?categories=$categoryId'));
+
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        throw Exception('Server error');
+      }
+    } catch (e) {
+      throw Exception('নেটওয়ার্ক কানেকশন নেই। এই ক্যাটাগরির ফাইল লোড করতে ইন্টারনেট প্রয়োজন।');
+    }
+  }
 }
